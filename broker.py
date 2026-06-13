@@ -18,6 +18,8 @@ acoes ={
     "BBAS3": 50,
 }
 
+historico = []
+
 def mostrar_carteira():
     print("=== CARTEIRA ===")
     print()
@@ -40,14 +42,19 @@ def comprar_acao():
     global saldo
     global carteira
     escolha_acao = input("Escolha uma ação para comprar: ")
-    quantidade = int(input("Quantidade: "))
+    
     if escolha_acao not in acoes:
         print("Ação inválida")
         return
+
+
+    quantidade = int(input("Quantidade: "))
+
     custo = acoes[escolha_acao]* quantidade
     if custo <= saldo:
         saldo -= custo
         carteira[escolha_acao] += quantidade
+        historico.append(f"Compra - {quantidade} ações de {escolha_acao}")
         print("Parabéns pela compra!")
         mostrar_carteira()
         print()
@@ -67,18 +74,25 @@ def vender_acao():
     if quantidade_venda <=  carteira[escolha_venda]:
         valor_venda = acoes[escolha_venda] * quantidade_venda
         saldo += valor_venda
+        historico.append(f"Venda - {quantidade_venda} ações de {escolha_venda}")
         print("Parabéns pela venda!")
         mostrar_carteira()
         print()
     else:
         print("Você não possui essa quantidade")
 
+def mostrar_historico():
+    print("===HISTÓRICO===")
+
+    for operacao in historico:
+        print(operacao)
 
 while True:
     print("1. Comprar ação")
     print("2. Vender ação")
     print("3. Ver carteira")
-    print("4. Sair")
+    print("4. Historico")
+    print("5. Sair")
     print()
 
     escolha = int(input("escolha uma opção: "))
@@ -89,6 +103,8 @@ while True:
     elif escolha == 3:
         mostrar_carteira()
     elif escolha == 4:
+        mostrar_historico()
+    elif escolha == 5:
         print("Você está saindo do Mini Home Broker...")
         break
     else:
