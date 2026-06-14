@@ -1,5 +1,8 @@
 saldo = 1000
 
+historico = []
+
+
 print(f"Saldo inicial: R$ {saldo:.2f}")
 
 carteira = {
@@ -18,7 +21,6 @@ acoes ={
     "BBAS3": 50,
 }
 
-historico = []
 
 def mostrar_carteira():
     print("=== CARTEIRA ===")
@@ -81,6 +83,20 @@ def vender_acao():
     else:
         print("Você não possui essa quantidade")
 
+def mostrar_patrimonio():
+    print("TESTE")
+    print("===Patrimônio===")
+    print()
+
+    print(f"Saldo = R${saldo :.2f}")
+    patrimonio = saldo
+    for ticker, quantidade in carteira.items():
+        valor_posicao = acoes[ticker]*quantidade
+        patrimonio += valor_posicao 
+    
+    print(f"Seu patrimônio é: R${patrimonio}")
+
+
 def mostrar_historico():
     print("===HISTÓRICO===")
 
@@ -92,7 +108,8 @@ while True:
     print("2. Vender ação")
     print("3. Ver carteira")
     print("4. Historico")
-    print("5. Sair")
+    print("5. Ver Patrimônio")
+    print("6. Sair")
     print()
 
     escolha = int(input("escolha uma opção: "))
@@ -105,6 +122,8 @@ while True:
     elif escolha == 4:
         mostrar_historico()
     elif escolha == 5:
+        mostrar_patrimonio()
+    elif escolha == 6:
         print("Você está saindo do Mini Home Broker...")
         break
     else:
