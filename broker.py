@@ -71,9 +71,8 @@ def vender_acao():
     escolha_venda = input("Escolha uma ação para vender: ")
     if escolha_venda not in acoes:
         print("Escolha uma ação válida para venda!")
-        return
+        escolha_venda = input("Escolha uma ação para vender: ")
     quantidade_venda = int(input("Quantida da Venda: "))
-    
     if quantidade_venda <=  carteira[escolha_venda]:
         valor_venda = acoes[escolha_venda] * quantidade_venda
         saldo += valor_venda
