@@ -1,3 +1,7 @@
+import os
+import random
+
+
 saldo = 1000
 
 historico = []
@@ -38,6 +42,23 @@ def mostrar_acoes():
     print()
     for ticker, preco in acoes.items():
         print(f"{ticker}: R$ {preco:.2f}")
+
+
+def atualizar_mercado():
+    for ticker, preco in acoes.items():
+        acoes[ticker] = random.uniform(preco*0.9, preco*1.1)
+
+    print("===MERCADO ATUALIZADO==="
+
+    "PETR4: R$ {acoes['PETR4']:.2f}"
+    "VALE3: R$ {acoes['VALE3']:.2f}"
+    "ITUB4: R$ {acoes['ITUB4']:.2f}"
+    "BBDC4: R$ {acoes['BBDC4']:.2f}"
+    "BBAS3: R$ {acoes['BBAS3']:.2f}"
+
+    )
+    
+
 
 def comprar_acao():
     mostrar_acoes()
@@ -125,6 +146,8 @@ while True:
     elif escolha == 5:
         mostrar_patrimonio()
     elif escolha == 6:
+        atualizar_mercado()
+    elif escolha == 7:
         print("Você está saindo do Mini Home Broker...")
         break
     else:
