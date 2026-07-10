@@ -25,6 +25,14 @@ acoes ={
     "BBAS3": 50,
 }
 
+preco_medio = {
+    "PETR4": 0,
+    "VALE3": 0,
+    "ITUB4": 0,
+    "BBDC4": 0,
+    "BBAS3": 0,
+}
+
 
 def mostrar_carteira():
     print("=== CARTEIRA ===")
@@ -48,15 +56,7 @@ def atualizar_mercado():
     for ticker, preco in acoes.items():
         acoes[ticker] = random.uniform(preco*0.9, preco*1.1)
 
-    print("===MERCADO ATUALIZADO==="
-
-    "PETR4: R$ {acoes['PETR4']:.2f}"
-    "VALE3: R$ {acoes['VALE3']:.2f}"
-    "ITUB4: R$ {acoes['ITUB4']:.2f}"
-    "BBDC4: R$ {acoes['BBDC4']:.2f}"
-    "BBAS3: R$ {acoes['BBAS3']:.2f}"
-
-    )
+    print("===MERCADO ATUALIZADO===")
     
 
 
@@ -83,6 +83,15 @@ def comprar_acao():
         print()
     else:
         print("Saldo insuficiente para comprar a ação")
+
+def calculo_preco_medio(escolha_acao, quantidade):
+    
+    quantidade_antiga = carteira[escolha_acao]
+    preco_medio_antigo = preco_medio[escolha_acao]
+    quantidade_nova = quantidade
+    preco_compra = acoes[escolha_acao]
+    preco_medio_novo = (quantidade_antiga * preco_medio_antigo + quantidade_nova * preco_compra) / (quantidade_antiga + quantidade_nova)
+    return preco_medio_novo
 
 def vender_acao():
     mostrar_acoes()
@@ -131,7 +140,8 @@ while True:
     print("3. Ver carteira")
     print("4. Historico")
     print("5. Ver Patrimônio")
-    print("6. Sair")
+    print("6. Atualizar Mercado")
+    print("7. Sair")
     print()
 
     escolha = int(input("escolha uma opção: "))
