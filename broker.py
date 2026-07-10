@@ -84,7 +84,6 @@ def vender_acao():
         print("Você não possui essa quantidade")
 
 def mostrar_patrimonio():
-    print("TESTE")
     print("===Patrimônio===")
     print()
 
@@ -99,9 +98,11 @@ def mostrar_patrimonio():
 
 def mostrar_historico():
     print("===HISTÓRICO===")
+    print()
 
     for operacao in historico:
         print(operacao)
+    print()
 
 while True:
     print("1. Comprar ação")
